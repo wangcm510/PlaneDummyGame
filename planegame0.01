@@ -5,22 +5,23 @@ import javax.swing.*;
 
 /**
  * 
- * 飞机游戏的主窗口
+ * 飞机游戏
  * @author 王参谋
  *
  */
 public class MyGameFrame extends JFrame {
 	
-	/**
-	 * 初始化窗口
-	 * 
-	 */
+	
 	
 	public static void main(String[] args) {
 		MyGameFrame f = new MyGameFrame();
 		f.launchFrame();
 	}
-
+	
+	/**
+	 * 初始化窗口
+	 * 
+	 */
 	//JFrame 类下的方法，设置窗口。
 	public void launchFrame() {
 		this.setTitle("小飞机练习项目");
@@ -36,4 +37,28 @@ public class MyGameFrame extends JFrame {
 			}
 		});
 	}
+	
+	@Override 
+	public void paint(Graphics g) {//自动被调用
+		 g.drawLine(0, 0,100, 100);
+				 
+	}
+	
+	//窗口刷新
+	class PaintThread extends Thread {
+		public void run() { 
+			while (true) {
+				repaint();//重复绘制
+				System.out.println("重绘了一次");
+				try {
+					Thread.sleep(40);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}	
+		}
+	}
+	
+	
+	
 }
